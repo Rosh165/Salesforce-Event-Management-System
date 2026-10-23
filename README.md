@@ -1,61 +1,130 @@
+# Salesforce Event Management System
 
-# Salesforce DX Project
+A Salesforce CRM project for organizing event-related information using custom objects, relationships, and validation rules.
 
-Salesforce DX is a development approach that brings source-driven development, team collaboration, and continuous integration to the Salesforce Platform. Instead of working directly in an org through a web browser, you work with metadata as source files in a local DX project, track changes in version control, and deploy through automated processes.
+## About the Project
 
-This project template gets you started with the tools and structure you need to build Salesforce applications using source control, scratch orgs, and the Salesforce CLI.
+The Salesforce Event Management System demonstrates how Salesforce can be customized to manage event data, connect related records, and maintain data quality through validation rules.
 
-## Prerequisites
+This project uses Salesforce Developer Edition, Salesforce DX, Salesforce CLI, and GitHub for source control.
 
-Before you start, make sure you have:
+## Features
 
-- **Salesforce CLI** - Download from [developer.salesforce.com/tools/salesforcecli](https://developer.salesforce.com/tools/salesforcecli). See [Install Salesforce CLI](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm) for details.
-- **VS Code with Salesforce Extension Pack** - See [Installation Instructions](https://developer.salesforce.com/docs/platform/sfvscode-extensions/guide/install.html) for details. Includes the Agentforce Vibes extension.
-- **A development org** - Sign up for a free Developer Edition org [here](https://developer.salesforce.com/signup).
-- **Dev Hub enabled** (optional, required to create scratch orgs) - You can enable Dev Hub in your development org under Setup > Dev Hub.  See [Provide Developers Access to Salesforce DX Tools](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_setup_dx_tools.htm).
+- **Custom Objects:** Organize event-related information.
+- **Object Relationships:** Connect related Salesforce records.
+- **Validation Rules:** Prevent invalid data based on defined business rules.
+- **Salesforce DX:** Maintain metadata in a structured project format.
+- **Version Control:** Track changes using Git and GitHub.
+
+## Technologies Used
+
+- Salesforce Developer Edition
+- Salesforce Lightning Experience
+- Salesforce DX and Salesforce CLI
+- Git and GitHub
+- Visual Studio Code (recommended)
 
 ## Project Structure
 
-Your DX project follows this structure:
+```text
+Salesforce-Event-Management-System/
+├── config/
+├── force-app/
+│   └── main/
+│       └── default/
+│           ├── applications/
+│           ├── classes/
+│           ├── layouts/
+│           ├── lwc/
+│           ├── objects/
+│           ├── permissionsets/
+│           ├── tabs/
+│           └── triggers/
+├── scripts/
+├── .gitignore
+├── package.json
+├── README.md
+└── sfdx-project.json
+```
 
-- **`force-app/main/default/`** - Your metadata source files live in this default package directory. You can configure additional package directories in the `sfdx-project.json` file.
-- **`config/`** - Scratch org definitions and project settings
-- **`scripts/`** - Automation scripts for common tasks
-- **`sfdx-project.json`** - Project manifest that defines package directories, namespace, API version, and other project-level settings
+## Prerequisites
 
-See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm).
+Install the following tools before running the project:
 
-## Get Started
+1. Salesforce CLI
+2. Git
+3. A Salesforce Developer Edition org
+4. Visual Studio Code with the Salesforce Extension Pack (recommended)
 
-Ready to start developing? The [Get Started with Salesforce DX](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_get_started_dx.htm) guide walks you through your first project, from creating a scratch org to creating a simple Apex class or LWC to deploying your code to a sandbox.
+## Installation and Setup
 
-## Common Salesforce CLI Commands
+### 1. Clone the repository
 
-Here are common CLI commands that you'll use the most:
+```bash
+git clone https://github.com/Rosh165/Salesforce-Event-Management-System.git
+cd Salesforce-Event-Management-System
+```
 
-- `sf org login web`: Authorize an org
-- `sf org open`: Open your org in a browser
-- `sf org create scratch`: Create a scratch org
-- `sf project deploy start`: Deploy metadata to your org
-- `sf project retrieve start`: Retrieve metadata from your org
-- `sf template generate <artifact>`: Scaffold new components, such as Apex classes and triggers, LWC components, Lightning apps, and more
-- `sf apex <command>`: Run Apex tests, run anonymous Apex blocks, and view logs
-- `sf data <command>`: Work with test data
-- `sf alias <command>`: Manage org aliases
-- `sf config <command>`: Configure CLI settings
+### 2. Log in to Salesforce
 
-## Use Agentforce Vibes to Build Lightning Apps
+For a Developer Edition org, run:
 
-Transform your ideas into custom Lightning apps that extend CRM workflows directly in Lightning Experience. Through natural conversations with Agentforce Vibes, implement custom objects and fields, complex business logic, and dynamic UI components. See [Build a Lightning App Using Agentforce Vibes](https://developer.salesforce.com/docs/platform/einstein-for-devs/guide/lexapp-overview.html).
+```bash
+sf org login web --alias TechFestOrg --instance-url https://login.salesforce.com
+```
 
-## Additional Resources
+Follow the browser prompts to authenticate.
 
-- [Agentforce Vibes Developer Guide](https://developer.salesforce.com/docs/platform/einstein-for-devs/guide/einstein-overview.html)
-- [Salesforce CLI Installation Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/)
-- [Salesforce CLI Plugin Development Guide](https://developer.salesforce.com/docs/platform/salesforce-cli-plugin/guide/conceptual-overview.html)
-- [Salesforce VS Code Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
+### 3. Verify your connection
 
-# Salesforce-Event-Management-System
-Salesforce Event Management System using custom objects, relationships, and validation rules. 6f5b2c034e483a069a5915831349738d8e2834c2
+```bash
+sf org list
+```
+
+### 4. Deploy Salesforce metadata
+
+After checking the target org and project configuration, run:
+
+```bash
+sf project deploy start --target-org TechFestOrg --source-dir force-app
+```
+
+Review the command output to confirm whether deployment succeeded.
+
+### 5. Open the Salesforce org
+
+```bash
+sf org open --target-org TechFestOrg
+```
+
+## Testing Checklist
+
+- [ ] Verify that custom objects are deployed.
+- [ ] Check fields and object relationships.
+- [ ] Test validation rules with valid and invalid data.
+- [ ] Verify record creation and updates.
+- [ ] Confirm that users have appropriate permissions.
+
+## Future Enhancements
+
+- Event registration and attendee tracking
+- Email notifications and reminders
+- Calendar integration
+- Reports and dashboards
+- Improved user interface using Lightning Web Components
+
+*These are proposed enhancements and may not be implemented in the current version.*
+
+## Repository
+
+[View this project on GitHub](https://github.com/Rosh165/Salesforce-Event-Management-System)
+
+## Author
+
+**Roshan S.**  
+Department of Artificial Intelligence and Data Science  
+St. Joseph College of Engineering
+
+## License
+
+No license has been specified yet. Add a license if you intend to permit public reuse or modification of this project.
